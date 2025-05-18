@@ -53,3 +53,5 @@ Thumbs.db
 uploads/
 #Taskfile
 Taskfile.yml
+#docker-compose
+docker-compose.yml
