@@ -3,9 +3,8 @@ package com.mtech.restaurant.services.impl;
 import com.mtech.restaurant.domain.GeoLocation;
 import com.mtech.restaurant.domain.entities.Address;
 import com.mtech.restaurant.services.GeoLocationService;
-import org.springframework.stereotype.Service;
-
 import java.util.Random;
+import org.springframework.stereotype.Service;
 
 @Service
 public class RandomLondonGeoLocationService implements GeoLocationService {
@@ -17,13 +16,9 @@ public class RandomLondonGeoLocationService implements GeoLocationService {
 
     @Override
     public GeoLocation geoLocate(Address address) {
-       Random random=new Random();
-       double latitude=MIN_LATITUDE+random.nextDouble()*(MAX_LATITUDE-MIN_LATITUDE);
-       double longitude=MIN_LONGITUDE+random.nextDouble()*(MAX_LONGITUDE-MIN_LONGITUDE);
-       return  GeoLocation.
-               builder()
-               .latitude(latitude)
-               .longitude(longitude)
-               .build();
+        Random random = new Random();
+        double latitude = MIN_LATITUDE + random.nextDouble() * (MAX_LATITUDE - MIN_LATITUDE);
+        double longitude = MIN_LONGITUDE + random.nextDouble() * (MAX_LONGITUDE - MIN_LONGITUDE);
+        return GeoLocation.builder().latitude(latitude).longitude(longitude).build();
     }
 }

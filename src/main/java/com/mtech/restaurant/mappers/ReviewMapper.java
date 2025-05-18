@@ -12,5 +12,4 @@ public interface ReviewMapper {
     ReviewCreateUpdateRequest toReviewCreateUpdateRequest(ReviewCreateUpdateRequestDto dto);
 
     ReviewDto toDto(Review review);
-
 }

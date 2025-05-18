@@ -33,5 +33,4 @@ public class OperatingHours {
 
     @Field(type = FieldType.Nested)
     private TimeRange sunday;
-
 }

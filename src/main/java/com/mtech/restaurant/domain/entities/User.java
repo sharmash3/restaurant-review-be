@@ -24,5 +24,4 @@ public class User {
 
     @Field(type = FieldType.Text)
     private String familyName;
-
 }

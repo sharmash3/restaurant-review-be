@@ -2,12 +2,11 @@ package com.mtech.restaurant.domain;
 
 import com.mtech.restaurant.domain.entities.Address;
 import com.mtech.restaurant.domain.entities.OperatingHours;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -20,6 +19,4 @@ public class RestaurantCreateUpdateRequest {
     private Address address;
     private OperatingHours operatingHours;
     private List<String> photoIds;
-
-
 }

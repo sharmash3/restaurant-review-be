@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class ErrorDto {
-private Integer status;
-private String message;
+    private Integer status;
+    private String message;
 }

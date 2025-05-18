@@ -7,12 +7,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface ReviewService {
-Review createReview(User author, String restaurantId, ReviewCreateUpdateRequest review);
+    Review createReview(User author, String restaurantId, ReviewCreateUpdateRequest review);
 
     Page<Review> getRestaurantReviews(String restaurantId, Pageable pageable);
 
-    Review updateReview(User user, String restaurantId, String reviewId,
-                        ReviewCreateUpdateRequest updatedReview);
+    Review updateReview(User user, String restaurantId, String reviewId, ReviewCreateUpdateRequest updatedReview);
 
     void deleteReview(String restaurantId, String reviewId);
 }

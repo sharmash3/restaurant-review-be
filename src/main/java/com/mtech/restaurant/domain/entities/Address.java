@@ -33,5 +33,4 @@ public class Address {
 
     @Field(type = FieldType.Keyword)
     private String country;
-
 }

@@ -1,9 +1,8 @@
 package com.mtech.restaurant.services;
 
+import java.util.Optional;
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.util.Optional;
 
 public interface StorageService {
     // Store a file and return its unique identifier

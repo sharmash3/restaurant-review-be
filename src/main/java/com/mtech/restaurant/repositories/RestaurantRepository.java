@@ -12,37 +12,31 @@ public interface RestaurantRepository extends ElasticsearchRepository<Restaurant
     // Search by minimum rating
     Page<Restaurant> findByAverageRatingGreaterThanEqual(Float minRating, Pageable pageable);
 
-    @Query("{" +
-            " \"bool\": {" +
-            " \"must\": [" +
-            " {\"geo_distance\": {" +
-            " \"distance\": \"?2km\"," +
-            " \"geoLocation\": {" +
-            " \"lat\": ?0," +
-            " \"lon\": ?1" +
-            " }" +
-            " }}" +
-            " ]" +
-            " }" +
-            "}")
+    @Query("{" + " \"bool\": {"
+            + " \"must\": ["
+            + " {\"geo_distance\": {"
+            + " \"distance\": \"?2km\","
+            + " \"geoLocation\": {"
+            + " \"lat\": ?0,"
+            + " \"lon\": ?1"
+            + " }"
+            + " }}"
+            + " ]"
+            + " }"
+            + "}")
+    Page<Restaurant> findByLocationNear(Float latitude, Float longitude, Float radiusKm, Pageable pageable);
 
-    Page<Restaurant> findByLocationNear(
-            Float latitude,
-            Float longitude,
-            Float radiusKm,
-            Pageable pageable);
-    @Query("{" +
-            " \"bool\": {" +
-            " \"must\": [" +
-            " {\"range\": {\"averageRating\": {\"gte\": ?1}}}" +
-            " ]," +
-            " \"should\": [" +
-            " {\"fuzzy\": {\"name\": {\"value\": \"?0\", \"fuzziness\": \"AUTO\"}}}," +
-            " {\"fuzzy\": {\"cuisineType\": {\"value\": \"?0\", \"fuzziness\": \"AUTO\"}}}" +
-            " ]," +
-            " \"minimum_should_match\": 1" +
-            " }" +
-            "}" +
-            "}")
+    @Query("{" + " \"bool\": {"
+            + " \"must\": ["
+            + " {\"range\": {\"averageRating\": {\"gte\": ?1}}}"
+            + " ],"
+            + " \"should\": ["
+            + " {\"fuzzy\": {\"name\": {\"value\": \"?0\", \"fuzziness\": \"AUTO\"}}},"
+            + " {\"fuzzy\": {\"cuisineType\": {\"value\": \"?0\", \"fuzziness\": \"AUTO\"}}}"
+            + " ],"
+            + " \"minimum_should_match\": 1"
+            + " }"
+            + "}"
+            + "}")
     Page<Restaurant> findByQueryAndMinRating(String query, Float minRating, Pageable pageable);
 }

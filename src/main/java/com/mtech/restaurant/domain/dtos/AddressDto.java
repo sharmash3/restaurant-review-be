@@ -12,24 +12,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class AddressDto {
-    @NotBlank(message = "StreetNumber is Required")
-    @Pattern(regexp = "[0-9]-{1,5}-[a-zA-Z]?$", message = "Invalid Street Number")
-    private String streetNumber;
+    @NotBlank(message = "StreetNumber is Required") @Pattern(regexp = "[0-9]-{1,5}-[a-zA-Z]?$", message = "Invalid Street Number") private String streetNumber;
 
-    @NotBlank(message = "StreetNumber is Required")
-    private String streetName;
+    @NotBlank(message = "StreetNumber is Required") private String streetName;
 
     private String unit;
 
-    @NotBlank(message = "city is Required")
-    private String city;
+    @NotBlank(message = "city is Required") private String city;
 
-    @NotBlank(message = "state is Required")
-    private String state;
+    @NotBlank(message = "state is Required") private String state;
 
-    @NotBlank(message = "postalCode is Required")
-    private String postalCode;
+    @NotBlank(message = "postalCode is Required") private String postalCode;
 
-    @NotBlank(message = "country is Required")
-    private String country;
+    @NotBlank(message = "country is Required") private String country;
 }

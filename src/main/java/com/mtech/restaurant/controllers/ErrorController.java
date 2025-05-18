@@ -5,6 +5,7 @@ import com.mtech.restaurant.exceptions.BaseException;
 import com.mtech.restaurant.exceptions.RestaurantNotFoundException;
 import com.mtech.restaurant.exceptions.ReviewNotAllowedException;
 import com.mtech.restaurant.exceptions.StorageException;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,8 +13,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.stream.Collectors;
 
 @RestController
 @ControllerAdvice
@@ -55,10 +54,8 @@ public class ErrorController {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorDto> handleValidationExceptions(MethodArgumentNotValidException ex) {
         log.error("Validation error", ex);
-// Collect all validation errors into a single string
-        String errorMessage = ex.getBindingResult()
-                .getFieldErrors()
-                .stream()
+        // Collect all validation errors into a single string
+        String errorMessage = ex.getBindingResult().getFieldErrors().stream()
                 .map(error -> error.getField() + ": " + error.getDefaultMessage())
                 .collect(Collectors.joining(", "));
         ErrorDto errorDto = ErrorDto.builder()
@@ -79,11 +76,10 @@ public class ErrorController {
     }
 
     @ExceptionHandler(ReviewNotAllowedException.class)
-    public ResponseEntity<ErrorDto> handleRestaurantReviewNotAllowedException(
-            ReviewNotAllowedException ex) {
-// Log the exception for debugging
+    public ResponseEntity<ErrorDto> handleRestaurantReviewNotAllowedException(ReviewNotAllowedException ex) {
+        // Log the exception for debugging
         log.error("Caught ReviewNotAllowedException exception", ex);
-// Create a user-friendly error response
+        // Create a user-friendly error response
         ErrorDto error = ErrorDto.builder()
                 .status(HttpStatus.BAD_REQUEST.value())
                 .message("The specified review cannot be created or updated")

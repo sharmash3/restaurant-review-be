@@ -5,13 +5,12 @@ import com.mtech.restaurant.domain.dtos.*;
 import com.mtech.restaurant.domain.entities.Address;
 import com.mtech.restaurant.domain.entities.Restaurant;
 import com.mtech.restaurant.domain.entities.Review;
+import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.data.elasticsearch.core.geo.GeoPoint;
-
-import java.util.List;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface RestaurantMapper {
@@ -31,7 +30,6 @@ public interface RestaurantMapper {
 
     @Named("populateTotalReviews")
     default Integer populateTotalReviews(List<Review> reviews) {
-        return reviews.size();
+        return reviews != null ? reviews.size() : 0;
     }
-
 }

@@ -25,10 +25,9 @@ public class RestaurantController {
 
     @PostMapping
     public ResponseEntity<RestaurantDto> createRestaurant(
-            @Valid @RequestBody RestaurantCreateUpdateRequestDto request
-    ) {
-        RestaurantCreateUpdateRequest restaurantCreateUpdateRequest = restaurantMapper
-                .toRestaurantCreateUpdateRequest(request);
+            @Valid @RequestBody RestaurantCreateUpdateRequestDto request) {
+        RestaurantCreateUpdateRequest restaurantCreateUpdateRequest =
+                restaurantMapper.toRestaurantCreateUpdateRequest(request);
         Restaurant restaurant = restaurantService.createRestaurant(restaurantCreateUpdateRequest);
         RestaurantDto createdRestaurantDto = restaurantMapper.toRestaurantDto(restaurant);
         return ResponseEntity.ok(createdRestaurantDto);
@@ -44,19 +43,14 @@ public class RestaurantController {
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "20") int size) {
         Page<Restaurant> searchResult = restaurantService.searchRestaurants(
-                q,
-                minRating,
-                latitude,
-                longitude,
-                radius,
-                PageRequest.of(page - 1, size)
-        );
+                q, minRating, latitude, longitude, radius, PageRequest.of(page - 1, size));
         return searchResult.map(restaurantMapper::toSummaryDto);
     }
 
     @GetMapping("/{restaurantId}")
     public ResponseEntity<RestaurantDto> getRestaurant(@PathVariable String restaurantId) {
-        return restaurantService.getRestaurant(restaurantId)
+        return restaurantService
+                .getRestaurant(restaurantId)
                 .map(restaurant -> ResponseEntity.ok(restaurantMapper.toRestaurantDto(restaurant)))
                 .orElse(ResponseEntity.notFound().build());
     }
@@ -65,12 +59,12 @@ public class RestaurantController {
     public ResponseEntity<RestaurantDto> updateRestaurant(
             @PathVariable String restaurantId,
             @Valid @RequestBody RestaurantCreateUpdateRequestDto restaurantCreateUpdateRequestDto) {
-// Convert DTO to domain object
+        // Convert DTO to domain object
         RestaurantCreateUpdateRequest restaurantCreateUpdateRequest =
                 restaurantMapper.toRestaurantCreateUpdateRequest(restaurantCreateUpdateRequestDto);
-// Update the restaurant
+        // Update the restaurant
         Restaurant updated = restaurantService.updateRestaurant(restaurantId, restaurantCreateUpdateRequest);
-// Convert and return the updated restaurant
+        // Convert and return the updated restaurant
         return ResponseEntity.ok(restaurantMapper.toRestaurantDto(updated));
     }
 

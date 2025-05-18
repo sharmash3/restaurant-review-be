@@ -1,5 +1,8 @@
 package com.mtech.restaurant.domain.entities;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -7,10 +10,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.elasticsearch.annotations.DateFormat;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -34,9 +33,8 @@ public class Review {
     private LocalDateTime lastEdited;
 
     @Field(type = FieldType.Nested)
-    private List<Photo> photos=new ArrayList<>();
+    private List<Photo> photos = new ArrayList<>();
 
     @Field(type = FieldType.Nested)
     private User writtenBy;
-
 }

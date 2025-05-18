@@ -1,8 +1,7 @@
 package com.mtech.restaurant.exceptions;
 
 public class RestaurantNotFoundException extends BaseException {
-    public RestaurantNotFoundException() {
-    }
+    public RestaurantNotFoundException() {}
 
     public RestaurantNotFoundException(String message) {
         super(message);

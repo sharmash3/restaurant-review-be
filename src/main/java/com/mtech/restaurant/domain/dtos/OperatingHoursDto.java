@@ -12,19 +12,17 @@ import lombok.NoArgsConstructor;
 @Builder
 public class OperatingHoursDto {
 
-        @Valid
-        private TimeRangeDto monday;
-        @Valid
-        private TimeRangeDto tuesday;
-        @Valid
-        private TimeRangeDto wednesday;
-        @Valid
-        private TimeRangeDto thursday;
-        @Valid
-        private TimeRangeDto friday;
-        @Valid
-        private TimeRangeDto saturday;
-        @Valid
-        private TimeRangeDto sunday;
+    @Valid private TimeRangeDto monday;
 
+    @Valid private TimeRangeDto tuesday;
+
+    @Valid private TimeRangeDto wednesday;
+
+    @Valid private TimeRangeDto thursday;
+
+    @Valid private TimeRangeDto friday;
+
+    @Valid private TimeRangeDto saturday;
+
+    @Valid private TimeRangeDto sunday;
 }
